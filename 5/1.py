@@ -1,0 +1,49 @@
+f = open('input', 'r')
+
+def getRow(s):
+    rows = 128
+    low = 0
+    high = 127
+    mid = 0
+
+    for char in s:
+        mid = (high + low) // 2
+        if char == 'B':
+            low = mid + 1
+            mid = mid + 1
+        if char == 'F':
+            high = mid - 1
+            mid = mid - 1
+
+    return mid
+
+def getCol(s):
+    cols = 8
+    low = 0
+    high = 7
+    mid = 0
+
+    for char in s:
+        mid = (high + low) // 2
+        if char == 'R':
+            low = mid + 1
+            mid = mid + 1
+        if char == 'L':
+            high = mid - 1
+            mid = mid - 1
+        
+    return mid
+
+def getId(s):
+    r = getRow(s[0:7])
+    c = getCol(s[7:9])
+
+    return r * 8 + c
+
+maxId = -1
+for line in f:
+    seatId = getId(line)
+    if seatId > maxId:
+        maxId = seatId
+
+print(maxId)
