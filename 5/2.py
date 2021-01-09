@@ -40,10 +40,15 @@ def getId(s):
 
     return r * 8 + c
 
-maxId = -1
-for line in f:
-    seatId = getId(line)
-    if seatId > maxId:
-        maxId = seatId
+ids = []
 
-print(maxId)
+for line in f:
+    currentId = getId(line)
+
+    ids.append(currentId)
+
+i = 904
+while i in ids:
+    i -= 1
+
+print(i)
